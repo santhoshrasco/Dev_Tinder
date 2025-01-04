@@ -1,0 +1,24 @@
+-node modules
+-Install Express
+-Create a server using  express
+-write request handlers for /test, /hello
+-Installed nodemon and created a script to run the server with nodemon
+-what are dependencies
+-what is the use use of '-g' while install npm
+-difference between caret ^ and tilde ~ 
+-Orders of the routes matters alot
+-Installed postman app to test the server --tested api call
+-Written logic for GET, POST, DELETE, PUT and PATCH requests
+-Explord the use of ?,+, (), * in the routes
+-Use of regex in routes /a/, /.*fly$/
+-reading the  query papameters in the routs
+-reading dynamic routes
+
+
+-multiple route handlers
+-next()
+-next function and errors along with res.send()
+-What is middlware  & why do we need it?
+-how express js basically handles requests behind the scenes
+-app.use() & app.all() DIFFERENCES?
+-errorhandling using this app.use('/',(err,req,res,next)=>{}), This is not a bettwer way and TRY CATCH is the best way.

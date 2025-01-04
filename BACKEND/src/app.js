@@ -3,23 +3,23 @@ const app = express();
 
 
 
-app.get('/test',(req,res)=>{
-    res.send('receieved the request')
+app.get('/getUserData', (req,res)=>{
+    try {
+        res.send("User Data Sent")
+    } catch (error) {
+        res.statusCode().send("Some error contact support team")
+    }
+})
+app.get('/user',(err,req,res,next)=>{
+if(err){
+    res.status(500).send("Something went wrong")
+}
+    
+    res.send("user data sent");
 })
 
-app.post('/test', (req, res)=>{
-    res.send({Fname:"santhosh",Lname:'kumar'});
-})
 
-app.delete('/test',(req,res)=>{
-    res.send('data deleted successfully')
-})
 
-// '/test' is a route 
-// (req,res)=>{ res.send('hello my dear friennds')})  this is called response handler;
-app.use('/test', (req,res)=>{ 
-    res.send('hello my dear friennds')
-});
 
 
 app.listen(3000,()=>{console.log("server is running on port 3000")});
