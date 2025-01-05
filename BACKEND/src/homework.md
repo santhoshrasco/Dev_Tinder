@@ -22,3 +22,13 @@
 -how express js basically handles requests behind the scenes
 -app.use() & app.all() DIFFERENCES?
 -errorhandling using this app.use('/',(err,req,res,next)=>{}), This is not a bettwer way and TRY CATCH is the best way.
+
+
+-Create a free cluster on MONGO DB website
+-INstalled mongoose library
+-connect your application to the database "connection URL/devTInder"
+-Call the connect DB function and connect to database before starting  application on 3000
+- Create a user schema and user model
+-create POST /signup API to add data to database
+-push some document  using API calls from postman
+-Error Handling using TRY, CATCH
