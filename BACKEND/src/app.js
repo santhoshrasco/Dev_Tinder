@@ -23,11 +23,16 @@ app.get('/user', async(req,res)=>{
     const userEmail = req.body.emailID;
     try {
         const user = await User.findOne({emailID: userEmail});
-        if(user.length ===0){
-            res.status("User not found");
-        }else{
-            res.send(user);
+        if (!user) {
+            res.status(404).send("User Not Found")
+        } else {
+            res.send(user)
         }
+        // if(user.length ===0){
+        //     res.status("User not found");
+        // }else{
+        //     res.send(user);
+        // }
     }
     catch(err){
         res.statusCode().send("something Went wrong")
@@ -43,8 +48,30 @@ try {
   res.status(400).send("something went wrong")  
 }
 });
- n
 
+//DELETE an user by their ID
+app.delete('/user', async (req,res)=>{
+    const userId = req.body.userId;
+    try{
+const user = await User.findByIdAndDelete(userId)
+res.send("user deleted Succesfully");
+    }catch (error) {
+  res.status(400).send("something went wrong")  ;
+}
+});
+
+//PATCH - update a user by theri ID
+app.patch("/user", async (req,res)=>{
+    const userId = req.body.userId;
+    const data = req.body
+    try{
+    const user = await User.findByIdAndUpdate({_id:userId},data,{returnDocument:"before"});
+    console.log(userth )
+    res.send("User Updated Succesfully");
+    }catch (error) {
+        res.status(400).send("something went wrong");
+    }
+})
 
 connectDB()
 .then(()=>{

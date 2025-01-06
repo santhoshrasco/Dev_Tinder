@@ -36,4 +36,4 @@
 
 -JS object vs JSON objects
 -Add the express.json middleware to your app
--
+-make your signup API dynamic to receive data from the end user
