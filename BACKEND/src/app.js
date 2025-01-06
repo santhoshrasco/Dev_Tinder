@@ -18,6 +18,34 @@ app.post("/signup", async (req,res) =>{
     
 });
 
+//GET  user by email
+app.get('/user', async(req,res)=>{
+    const userEmail = req.body.emailID;
+    try {
+        const user = await User.findOne({emailID: userEmail});
+        if(user.length ===0){
+            res.status("User not found");
+        }else{
+            res.send(user);
+        }
+    }
+    catch(err){
+        res.statusCode().send("something Went wrong")
+    }
+})
+
+//Feed API -GET/feed - get all the users from the database
+app.get('/feed', async(req,res)=>{
+try {
+    const users = await User.find({});
+    res.send(users);
+} catch (error) {
+  res.status(400).send("something went wrong")  
+}
+});
+ n
+
+
 connectDB()
 .then(()=>{
 console.log("database connected sucessfully")

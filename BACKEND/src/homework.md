@@ -32,3 +32,8 @@
 -create POST /signup API to add data to database
 -push some document  using API calls from postman
 -Error Handling using TRY, CATCH
+
+
+-JS object vs JSON objects
+-Add the express.json middleware to your app
+-
