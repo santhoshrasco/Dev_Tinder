@@ -10,7 +10,7 @@ app.post("/signup", async (req,res) =>{
     // creating a new instance of the user model  
     const user = new User(req.body);
     try {
-        await user.save();
+    await user.save();
     res.send("User added successfully");
     } catch (error) {
         res.status(400).send("something went wrong")  ;
@@ -60,15 +60,23 @@ res.send("user deleted Succesfully");
 });
 
 //PATCH - update a user by theri ID
-app.patch("/user", async (req,res)=>{
-    const userId = req.body.userId;
-    const data = req.body
+app.patch("/user/:userId", async(req,res)=>{
+    const userId = req.params?.userId;
+    const data = req.body;
     try{
-    const user = await User.findByIdAndUpdate({_id:userId},data,{returnDocument:"before"});
-    console.log(User)
+        const ALLOWED_UPDATES = ["age","photoUrl","gender","about","userId","skills"];
+        const isUpdateAllowed = Object.keys(data).every((k)=> ALLOWED_UPDATES.includes(k));
+        if(!isUpdateAllowed){
+            throw new Error("Update Not Allowed");
+        }
+        if(data?.skill.length >10){
+            throw new Error("Skill should be less than 10");
+        }
+    const user = await User.findByIdAndUpdate({_id:userId},data,{returnDocument:"after"});
+    console.log(user)
     res.send("User Updated Succesfully");
-    }catch (error) {
-        res.status(400).send("something went wrong");
+    }catch (err) {
+        res.status(400).send("User update Failed " + err.message);
     }
 })
 
@@ -78,5 +86,5 @@ console.log("database connected sucessfully")
 app.listen(3000, ()=>{console.log("server is running on port 3000")})
 })
 .catch((err)=>{
-    console.error("eroor connecting to server ",err)
+    console.error("eroor connecting to server "+err)
 });
