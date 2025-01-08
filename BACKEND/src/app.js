@@ -13,10 +13,9 @@ app.post("/signup", async (req,res) =>{
         await user.save();
     res.send("User added successfully");
     } catch (error) {
-        res.statusCode().send("Error happend while adding user" +  error);
-    }
-    
-});
+        res.status(400).send("something went wrong")  ;
+}
+ });
 
 //GET  user by email
 app.get('/user', async(req,res)=>{
@@ -66,7 +65,7 @@ app.patch("/user", async (req,res)=>{
     const data = req.body
     try{
     const user = await User.findByIdAndUpdate({_id:userId},data,{returnDocument:"before"});
-    console.log(userth )
+    console.log(User)
     res.send("User Updated Succesfully");
     }catch (error) {
         res.status(400).send("something went wrong");

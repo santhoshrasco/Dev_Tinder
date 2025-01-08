@@ -37,3 +37,11 @@
 -JS object vs JSON objects
 -Add the express.json middleware to your app
 -make your signup API dynamic to receive data from the end user
+-User.findone() with duplicate email ids, which obk=ject returned
+-API - Get user by ID
+- Create a delete user API
+-Difference betwen PATCH and PUT
+-API - Update user by ID
+-Explores the mongoose DOcumentation for model methods
+- What are the options in a Model.findOneandUpdate method, explore more about it
+-API - update with email id
