@@ -62,4 +62,8 @@ Explore Validator library function and use Validator funcions for password, emai
 -validate data signup using helper function
 -install bcrypt package
 -Create passwordHash using bcrypt.hash & save the user is encrypted password
+-create login API
+-Compare passwords and throw errors if email or password is valid
 
+-INstall Cookie-parser
+-In login API, Create JWT token 
