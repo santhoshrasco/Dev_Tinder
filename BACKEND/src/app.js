@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const { connectDB } = require("../src/config/database");
 const User = require("../src/models/user");
+const {validatePassword} = require("./models/user")
 const bcrypt = require("bcrypt");
 const {
   validateSignUpData,
@@ -9,9 +10,10 @@ const {
 } = require("../src/utils/validation");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
-
+const {userAuth} = require("./Middlewares/auth")
 app.use(express.json());
 app.use(cookieParser());
+
 app.post("/signup", async (req, res) => {
   try {
     //validation of data
@@ -36,7 +38,49 @@ app.post("/signup", async (req, res) => {
     res.status(400).send("ERROR : " + err.message);
   }
 });
+app.post("/login",  async (req, res) => {
+  try {
+    const { emailID, password } = req.body;
+  
 
+    const user = await User.findOne({ emailID: emailID });
+    if (!user) {
+      throw new Error("INVALID CREDENTIALS");
+    }
+    const isPasswordValid = await user.validatePassword(password);
+    if (isPasswordValid) {
+      //create JWT token
+      const token = await user.getJWT();
+      //Add a token to cookie
+      res.cookie("token", token,{
+        expires: new Date(Date.now() + 8*3600000),
+      });
+      res.send("LOGIN SUCCESSFUL!!!");
+    } else {
+      throw new Error("INVALID CREDENTIALS");
+    }
+  } catch (err) {
+    res.status(400).send("ERROR : " + err.message);
+  }
+});
+app.get("/profile", userAuth ,async (req, res) => {
+  try {
+    //validate my token
+    const user = req.user;
+    res.send(user);
+  } catch {
+    res.status(400).send("ERROR : " + err.message);
+  }
+});
+
+
+app.post("/sendConnectionRequest", userAuth, async (req,res)=>{
+  const user = req.user;
+  //Sending a Connection Request
+  console.log("sending a connection request")
+
+  res.send(user.firstName + " Sent the Connection Request ")
+})
 //GET  user by email
 app.get("/user", async (req, res) => {
   const userEmail = req.body.emailID;
@@ -57,52 +101,9 @@ app.get("/user", async (req, res) => {
   }
 });
 
-app.get("/profile", async (req, res) => {
-  try {
-    const cookie = req.cookies;
-    const { token } = cookie;
-    if(!token){
-      throw new Error("INVALID TOKEN")
-    }
-    //validate my token
-    const decodedMessage = await jwt.verify(token, "DEV@tinder$790");
-    const _id = decodedMessage;
-    console.log("Logged in user  is : ", _id);
-    const user = await User.findById(_id);
-    if(!user){
-      throw new Error ("USER NOT FOUND")
-    }
-    res.send(user);
-  } catch {
-    res.status(400).send("ERROR : " + err.message);
-  }
-});
-//login API
-app.post("/login", async (req, res) => {
-  try {
-    const { emailID, password } = req.body;
-    validationLoginData(req);
 
-    const user = await User.findOne({ emailID: emailID });
-    if (!user) {
-      throw new Error("INVALID CREDENTIALS");
-    }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (isPasswordValid) {
-      //create JWT token
-      const token = await jwt.sign({ _id: user._id }, "DEV@tinder$790");
-      console.log(token);
-      //Add a token to cookie
-      res.cookie("token", token);
 
-      res.send("LOGIN SUCCESSFUL!!!");
-    } else {
-      throw new Error("INVALID CREDENTIALS");
-    }
-  } catch (err) {
-    res.status(400).send("ERROR : " + err.message);
-  }
-});
+
 //Feed API -GET/feed - get all the users from the database
 app.get("/feed", async (req, res) => {
   try {
