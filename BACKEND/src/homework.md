@@ -74,3 +74,8 @@ Explore Validator library function and use Validator funcions for password, emai
 
 -Add the userAuth middleware in profile and a new sendConnectionRequest API
 -Set the expiry of JWT token and cookies to 7 days
+-Create UserScema method to getJwt()
+-Create UserSchema method to comparepassword(passwordInputByUser)
+
+-explore tinder APIs with tinder
+    
