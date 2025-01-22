@@ -98,3 +98,12 @@ Explore Validator library function and use Validator funcions for password, emai
 -Read this article about Compound indexes
 -ALWAYS THINK ABOUT CORNER CASES
     
+-write code with proper validations for POST /request/review/:status/:requestId
+-thought process -post vs GET
+-Read about ref and Populate 
+-Create GET /user/request/received with all the checks
+-Create GET GET/users/connections
+
+-Logic for GET /feed API
+-Explore the $nin, $ and , $ne and other query operators
+ 
