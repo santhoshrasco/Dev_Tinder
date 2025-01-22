@@ -78,4 +78,23 @@ Explore Validator library function and use Validator funcions for password, emai
 -Create UserSchema method to comparepassword(passwordInputByUser)
 
 -explore tinder APIs with tinder
+-Read documentation for express.router()
+-Create AuthRouter, ProfileRouter, requestRouter
+-Import these routers in app.js
+-Create POST/Logout API
+-Create PATCH /profile/edit
+-Create PATCH/ profile/password API => forget password API'
+-Make you validate all data in every POST, PATCH apis
+
+-Create Connection request Schema
+-Send Connection Request API
+-Proper validation of DATA
+-THink about all corner Cases
+-$or query in Mongooose ***important**
+-schema.pre("save") function
+-Read more about indexes in Mongo DB
+-Why do we need indexes in MongoDB
+-What is the advantages and disadvantages of creating?
+-Read this article about Compound indexes
+-ALWAYS THINK ABOUT CORNER CASES
     

@@ -50,10 +50,9 @@ const schema = new mongoose.Schema(
     },
     gender: {
       type: String,
-      validate(value) {
-        if (!["male", "female", "Others"].includes(value)) {
-          throw new Error("Invalid gender");
-        }
+      enum: {
+        values: ["male", "female", "other"],
+        message:`{VALUE} is not a Valid gender`
       },
     },
     photoUrl: {
@@ -78,6 +77,8 @@ const schema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+
 schema.methods.getJWT = async function () {
   const user = this;
 
