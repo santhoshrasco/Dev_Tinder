@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "5d942133-d823-48c0-bc63-8283348df6ae",
+		"name": "dev_Tinder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "18647666",
+		"_collection_link": "https://gold-shuttle-565417.postman.co/workspace/Dev_Tinder~d8a0468e-78ee-4dd2-8b34-6b3d57ab61e3/collection/18647666-5d942133-d823-48c0-bc63-8283348df6ae?action=share&source=collection_link&creator=18647666"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"firstName\" : \"Dwayne\",\r\n        \"lastName\" : \"Jhonson\",\r\n        \"emailID\" : \"Rock@gmail.com\",\r\n        \"password\" : \"Santhosh@4270\"\r\n       \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emailID\": \"santhoshkumar4270@gmail.com\",\r\n    \"password\": \"Santhosh@4270\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/login"
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:3000/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "profile/view",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/profile/view"
+			},
+			"response": []
+		},
+		{
+			"name": "sendRequest",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:3000/request/send/ignored/677f69dfec6b3ce64a2aab20"
+			},
+			"response": []
+		},
+		{
+			"name": "reviewRequest",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:3000/request/review/accepted/6787bfcb5287badc8f487053"
+			},
+			"response": []
+		},
+		{
+			"name": "/profile/edit",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"age\":23,\r\n    \"gender\": \"male\",\r\n    \"photoUrl\":\"https://google.com/imgres?q=actor%20vijay&imgurl=https%3A%2F%2Fnewsmeter.in%2Fh-upload%2F2023%2F06%2F22%2F348497-2023-06-22-102153.webp&imgrefurl=https%3A%2F%2Fnewsmeter.in%2Fentertainment%2Fhappy-birthday-thalapathy-vijay-here-are-some-unknown-facts-about-versatile-actor-713979&docid=sqqa5u5Puy58LM&tbnid=sQKYWtoupJpW7M&vet=12ahUKEwjnj-H-o_qKAxXpUGwGHSlhGX0QM3oECGYQAA..i&w=640&h=502&hcb=2&ved=2ahUKEwjnj-H-o_qKAxXpUGwGHSlhGX0QM3oECGYQAA\",\r\n    \"about\": \"Iam a actor and a politician\",\r\n    \"skills\": [\"actins\", \"politics\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/profile/edit"
+			},
+			"response": []
+		},
+		{
+			"name": "/user/connections",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/user/connections"
+			},
+			"response": []
+		},
+		{
+			"name": "/user/requests/received",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/user/requests/receieved"
+			},
+			"response": []
+		},
+		{
+			"name": "/feed",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/feed"
+			},
+			"response": []
+		}
+	]
+}
