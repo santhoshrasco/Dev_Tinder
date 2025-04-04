@@ -3,7 +3,12 @@ const app = express();
 const { connectDB } = require("./config/database");
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
+const cors = require("cors")
 
+app.use(cors({
+  origin: ["http://localhost:5173", "http://localhost:3000"],
+  credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser());
 const authRouter = require("./routes/auth");
